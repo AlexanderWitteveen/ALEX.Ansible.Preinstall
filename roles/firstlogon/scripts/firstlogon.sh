@@ -7,3 +7,4 @@ defaultpassword="$4"
 password="$5"
 
 expect -f $role_path/scripts/firstlogon.expect "$ipaddress" "$defaultusername" "$defaultpassword" "$password"
+ 
