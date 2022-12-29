@@ -1,0 +1,9 @@
+---
+
+- name: "Playbook: Knownhosts"
+  hosts: "{{ args_host }}"
+  gather_facts: false
+  become: false
+
+  roles:
+    - alex.preinstall.knownhosts
