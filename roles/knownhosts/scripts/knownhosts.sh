@@ -3,14 +3,21 @@
 role_path="$1"
 ipaddress="$2"
 
+echo $USER
+
 #echo "$role_path"
 #echo "$ipaddress"
 
 keystring=$(ssh-keyscan -H -t ecdsa $ipaddress 2>/dev/null)
-echo $keystring
 if [[ -z $keystring ]]; then
-  echo "Error: Server not online"
-  exit 2
+    keystring=$(ssh-keyscan -H -t ed25519 $ipaddress 2>/dev/null)
+    if [[ -z $keystring ]]; then
+        keystring=$(ssh-keyscan -H -t rsa $ipaddress 2>/dev/null)
+        if [[ -z $keystring ]]; then
+            echo "Error: Server not online"
+            exit 2
+        fi
+    fi
 fi
 
 IFS=' ' read -ra keyarray <<< $keystring 
