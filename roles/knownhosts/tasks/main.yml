@@ -1,11 +1,7 @@
 ---
 
-- name: Debug Facts
-  debug:
-    var: ansible_facts
-
 - name: Update Known Hosts
-  shell: "{{ role_path }}/scripts/knownhosts.sh {{ role_path }} {{ ansible_host }}"
+  shell: "{{ role_path }}/scripts/knownhosts.sh '{{ role_path }}' '{{ ansible_host }}'"
   args:
     executable: /bin/bash
   register: expectresult
