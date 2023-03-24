@@ -1,9 +1,0 @@
----
-
-- name: "Playbook: Debug"
-  hosts: "{{ args_host }}"
-  gather_facts: true
-  become: true
-
-  roles:
-    - alex.preinstall.debug

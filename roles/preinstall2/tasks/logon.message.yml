@@ -1,0 +1,43 @@
+---
+
+#- name: Copy pre-logon message
+#  ansible.builtin.template:
+#    src: "issue.j2"
+#    dest: "/etc/issue"
+#    owner: root
+#    group: root
+#    mode: 0644
+#  register: messageresult
+
+#- name: Unconditionally reboot the machine with all defaults
+#  reboot:
+#  when: messageresult.changed
+
+- name: Copy logon message
+  ansible.builtin.template:
+    src: "00-header.j2"
+    dest: "/etc/update-motd.d/00-header"
+    owner: root
+    group: root
+    mode: 0755
+
+- name: Remove file (delete file)
+  ansible.builtin.file:
+    path: /etc/update-motd.d/{{ item }}
+    state: absent
+  loop:
+    - 10-help-text
+    - 50-landscape-sysinfo
+    - 50-motd-news
+    - 85-fwupd
+    - 88-esm-announce
+    - 90-updates-available
+    - 91-contract-ua-esm-status
+    - 91-release-upgrade
+    - 92-unattended-upgrades
+    - 95-hwe-eol
+    - 97-overlayroot
+    - 98-fsck-at-reboot
+    - 98-reboot-required
+
+

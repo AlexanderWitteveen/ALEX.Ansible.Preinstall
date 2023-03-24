@@ -1,9 +1,0 @@
----
-
-- name: "Playbook: First Logon"
-  hosts: "{{ args_host }}"
-  gather_facts: false
-  become: false
-
-  roles:
-    - alex.preinstall.firstlogon

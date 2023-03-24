@@ -1,0 +1,11 @@
+---
+
+- include_tasks: certificates.yml
+
+- include_tasks: hostname.yml
+
+##- include_tasks: logon.message.yml
+
+- include_tasks: apt.base.yml
+
+

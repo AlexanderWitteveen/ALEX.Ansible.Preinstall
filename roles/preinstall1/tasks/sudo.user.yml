@@ -1,0 +1,12 @@
+---
+
+- name: Set sudo for user
+  shell: ../scripts/sudo.user.sh "{{ args_dhcpipaddress }}" "{{ args_admin_username }}" "{{ args_admin_password }}"
+  args:
+    executable: /bin/bash
+  register: expectresult
+  changed_when: '"Changed" in expectresult.stdout'
+  failed_when: '"Error" in expectresult.stdout'
+  connection: local
+
+

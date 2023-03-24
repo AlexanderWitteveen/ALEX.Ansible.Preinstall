@@ -1,0 +1,27 @@
+---
+
+- name: Remove file (delete file)
+  ansible.builtin.file:
+    path: /etc/apt/sources.list.d/{{ item }}
+    state: absent
+  loop:
+    - pve-enterprise.list
+
+- name: Update cache
+  apt:
+    update_cache: yes
+  changed_when: false
+  failed_when: false
+
+- name: Remove unused packages from the cache
+  apt:
+    autoclean: yes
+
+- name: Remove dependencies that are no longer required
+  apt:
+    autoremove: yes
+
+- name: Upgrade all packages to the latest version
+  apt:
+    upgrade: full
+

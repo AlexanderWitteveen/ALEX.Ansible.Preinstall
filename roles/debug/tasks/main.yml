@@ -1,5 +1,0 @@
----
-
-- name: Debug Facts
-  debug:
-    var: ansible_facts

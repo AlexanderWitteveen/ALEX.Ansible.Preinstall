@@ -1,0 +1,17 @@
+---
+
+# see https://www.linuxfromscratch.org/blfs/view/svn/postlfs/logon.html
+
+
+#- name: Print message
+#  debug:
+#    msg: "Change hostname from {{ ansible_facts.hostname }} to {{ args_hostname }}."
+
+- name: Set a hostname
+  ansible.builtin.hostname:
+    name: "{{ args_hostname }}"
+  register: hostnameresult
+
+- name: Conditionally reboot the machine with all defaults
+  reboot:
+  when: hostnameresult.changed
