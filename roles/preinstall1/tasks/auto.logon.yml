@@ -1,10 +1,11 @@
 ---
 
 - name: Ensure autologon
-  shell: ../scripts/auto.logon.sh "{{ args_dhcpipaddress }}" "{{ args_admin_username }}" "{{ args_admin_password }}" "/home/alex/.ssh/alex"
+  shell: ../scripts/auto.logon.sh "{{ args_dhcpipaddress }}" "{{ args_admin_username }}" "{{ args_admin_password }}" "{{ args_local_user_ssh_key }}" "{{ args_local_user_ssh_pub }}"
   args:
     executable: /bin/bash
   register: expectresult
   changed_when: '"Changed" in expectresult.stdout'
   failed_when: '"Error" in expectresult.stdout'
   connection: local
+ 
