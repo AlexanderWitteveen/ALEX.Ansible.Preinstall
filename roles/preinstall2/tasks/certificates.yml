@@ -78,7 +78,7 @@
           --san {{ args_hostname }} \
           --san {{ args_hostname }}.{{ args_dns_local }} \
           --san localhost \
-          --san {{ args_dhcpipaddress }} \
+          --san {{ args_ipaddress }} \
           --force
       args:
         executable: /bin/bash

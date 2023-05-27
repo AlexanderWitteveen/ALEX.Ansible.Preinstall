@@ -1,7 +1,7 @@
 ---
 
 - name: Remote install sudo
-  shell: ../scripts/remote.install.sudo.sh "{{ args_dhcpipaddress }}" "{{ args_install_username }}" "{{ args_admin_password }}" "{{ args_install_image }}"
+  shell: ../scripts/remote.install.sudo.sh "{{ args_ipaddress }}" "{{ args_install_username }}" "{{ args_admin_password }}" "{{ args_install_image }}"
   args:
     executable: /bin/bash
   register: expectresult

@@ -1,7 +1,7 @@
 ---
 
 - name: Update Known Hosts
-  shell: ../scripts/known.hosts.sh "{{ args_dhcpipaddress }}" "{{ args_local_user_ssh }}"
+  shell: ../scripts/known.hosts.sh "{{ args_ipaddress }}" "{{ args_local_user_ssh }}"
   args:
     executable: /bin/bash
   register: expectresult

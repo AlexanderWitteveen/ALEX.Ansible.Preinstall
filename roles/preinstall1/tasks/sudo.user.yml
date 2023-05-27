@@ -1,7 +1,7 @@
 ---
 
 - name: Set sudo for user
-  shell: ../scripts/sudo.user.sh "{{ args_dhcpipaddress }}" "{{ args_admin_username }}" "{{ args_admin_password }}"
+  shell: ../scripts/sudo.user.sh "{{ args_ipaddress }}" "{{ args_admin_username }}" "{{ args_admin_password }}"
   args:
     executable: /bin/bash
   register: expectresult

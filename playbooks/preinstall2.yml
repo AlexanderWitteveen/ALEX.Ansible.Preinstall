@@ -1,9 +1,11 @@
 ---
 
 - name: "Playbook: Preinstall 2 - first ansible"
+  hosts: "{{ args_host }}"
   gather_facts: true
   become: true
-  hosts: "{{ args_dhcpipaddress }}"
+  vars:
+    ansible_host: "{{ args_ipaddress }}"
 
   vars_files:
     - /etc/ansible/inventory/vars.yml

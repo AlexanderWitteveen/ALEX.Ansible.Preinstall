@@ -1,7 +1,7 @@
 ---
 
 - name: Add User
-  shell: ../scripts/add.user.sh "{{ args_dhcpipaddress }}" "{{ args_install_username }}" "{{ args_admin_username }}" "{{ args_admin_password }}"
+  shell: ../scripts/add.user.sh "{{ args_ipaddress }}" "{{ args_install_username }}" "{{ args_admin_username }}" "{{ args_admin_password }}"
   args:
     executable: /bin/bash
   register: expectresult

@@ -1,7 +1,7 @@
 ---
 
 - name: Remote install python3
-  shell: ../scripts/remote.install.python3.sh "{{ args_dhcpipaddress }}"
+  shell: ../scripts/remote.install.python3.sh "{{ args_ipaddress }}"
   args:
     executable: /bin/bash
   register: expectresult
