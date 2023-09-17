@@ -1,0 +1,11 @@
+---
+
+- name: Remote install python3
+  shell: ../scripts/remote.install.python3.sh "{{ args_ipaddress }}" "{{ args_admin_username }}"
+  args:
+    executable: /bin/bash
+  register: expectresult
+  changed_when: '"Changed" in expectresult.stdout'
+  failed_when: '"Error" in expectresult.stdout'
+  connection: local
+  become: false

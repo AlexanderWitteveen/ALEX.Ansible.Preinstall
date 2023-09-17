@@ -1,0 +1,11 @@
+---
+
+- name: First logon
+  shell: ../scripts/first.logon.sh "{{ args_ipaddress }}" "{{ args_admin_password }}" "{{ args_firstlogon_expect }}" "{{ args_install_username }}" "{{ args_install_password }}"
+  args:
+    executable: /bin/bash
+  register: expectresult
+  changed_when: '"Changed" in expectresult.stdout'
+  failed_when: '"Error" in expectresult.stdout'
+  connection: local
+  become: false

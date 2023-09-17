@@ -1,0 +1,11 @@
+---
+
+- name: Remote install sudo
+  shell: ../scripts/remote.install.sudo.sh "{{ args_ipaddress }}" "{{ args_install_username }}" "{{ args_admin_password }}" "{{ args_expect }}"
+  args:
+    executable: /bin/bash
+  register: expectresult
+  changed_when: '"Changed" in expectresult.stdout'
+  failed_when: '"Error" in expectresult.stdout'
+  connection: local
+  become: false

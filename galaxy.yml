@@ -2,7 +2,7 @@ namespace: alex
 
 name: preinstall
 
-version: 1.4.14
+version: 1.5.15
 ## TODO Autiomate using the build command
 
 readme: README.md

@@ -1,0 +1,48 @@
+#!/usr/bin/expect -f
+
+set ipaddress [lindex $argv 0]
+set username [lindex $argv 1]
+set password [lindex $argv 2]
+set pub [lindex $argv 3]
+set keypath [lindex $argv 4]
+
+send_user "IPAddress(exp) is $ipaddress\n"
+send_user "Username is $username\n"
+send_user "Password(exp) is $password\n"
+
+set timeout 120
+
+spawn ssh -i $keypath $username@$ipaddress
+
+expect {
+    "password:" {
+        send -- "$password\r"
+
+        expect "Linux" {
+            expect "$username@"
+
+            send -- "mkdir .ssh\r"
+
+            expect "$username@"
+
+            send -- "echo '$pub' >> ~/.ssh/authorized_keys\r"
+
+            expect "$username@"
+
+            send -- "exit\r"
+
+            expect eof
+
+            send_user "**** Changed Finished Expect: SSH public key set for new user\n"
+        }
+    }
+    "Last login" {
+        expect *
+
+        send -- "exit\r"
+
+        expect eof
+
+        send_user "**** Finished Expect: SSH public key already set\n"
+    }
+}

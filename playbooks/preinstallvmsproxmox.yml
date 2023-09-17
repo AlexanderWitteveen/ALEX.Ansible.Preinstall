@@ -1,0 +1,24 @@
+---
+
+- name: "Playbook: Preinstall on proxmox hosted vm"
+  hosts: "{{ args_host }}"
+  gather_facts: false
+  become: true
+  vars:
+    ansible_host: "{{ args_ipaddress }}"
+
+  vars_files:
+    - /etc/ansible/inventory/vars.yml
+
+  roles:
+    - name: alex.preinstall.waitstarted
+    - name: alex.preinstall.knownhost
+    - name: alex.preinstall.firstlogon
+    - name: alex.preinstall.adduser
+    - name: alex.preinstall.autologon
+    - name: alex.preinstall.sudouser
+    - name: alex.preinstall.remoteinstallpython3
+      tags: install_python3
+    - name: alex.preinstall.certificates
+    - name: alex.preinstall.hostname
+    - name: alex.preinstall.aptupgrade

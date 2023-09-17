@@ -2,7 +2,11 @@
 
 ipaddress=$1
 password=$2
+expect=$3
+installusername=$4
+installpassword=$5
 
-installimage=$3
-
-expect -f ../scripts/first.logon.$installimage.expect "$ipaddress" "$password"
+expect -f ../scripts/first.logon.$expect.expect "$ipaddress" "$password" "$installusername" "$installpassword"
+if [[ "$?" != "0" ]]; then 
+    echo "**** Error: Expect failed"
+fi

@@ -1,0 +1,25 @@
+---
+
+- name: "Playbook: Preinstall truenas 22 on proxmox hosted vm"
+  hosts: "{{ args_host }}"
+  gather_facts: false
+  become: true
+  vars:
+    ansible_host: "{{ args_ipaddress }}"
+
+  vars_files:
+    - /etc/ansible/inventory/vars.yml
+
+  roles:
+    - name: alex.preinstall.waitstarted
+    - name: alex.preinstall.knownhost
+    - name: alex.preinstall.firstlogon
+      vars:
+        - args_expect: truenas
+        - args_default_user: TODO
+        - args_default_password: TODO
+    - name: alex.preinstall.adduser
+    - name: alex.preinstall.autologon
+      vars:
+        - args_expect: truenas
+    - name: alex.preinstall.sudouser
