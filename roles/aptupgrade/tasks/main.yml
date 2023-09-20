@@ -6,6 +6,10 @@
     state: absent
   loop:
     - pve-enterprise.list
+  vars:
+    ansible_connection: ssh
+    ansible_host: "{{ prop_ipaddress }}"
+  become: true
 
 #- name: Copy apt sources list for Ubuntu 20.04
 #  ansible.builtin.template:
@@ -21,16 +25,32 @@
     update_cache: yes
   changed_when: false
   failed_when: false
+  vars:
+    ansible_connection: ssh
+    ansible_host: "{{ prop_ipaddress }}"
+  become: true
 
 - name: Remove unused packages from the cache
   apt:
     autoclean: yes
+  vars:
+    ansible_connection: ssh
+    ansible_host: "{{ prop_ipaddress }}"
+  become: true
 
 - name: Remove dependencies that are no longer required
   apt:
     autoremove: yes
+  vars:
+    ansible_connection: ssh
+    ansible_host: "{{ prop_ipaddress }}"
+  become: true
 
 - name: Upgrade all packages to the latest version
   apt:
     upgrade: full
+  vars:
+    ansible_connection: ssh
+    ansible_host: "{{ prop_ipaddress }}"
+  become: true
 

@@ -1,0 +1,38 @@
+---
+
+- name: "Playbook: Build VM"
+  hosts: "{{ args_host }}"
+  gather_facts: false
+
+  vars_files:
+    - /etc/ansible/inventory/vars.yml
+
+  roles:
+    - name: alex.preinstall.knownhost
+      vars:
+        args_ipaddress: "{{ prop_proxmox_host }}"
+    - name: alex.proxmox.status
+      vars:
+        args_vmid: "{{ prop_proxmox_vmid }}"
+    - name: alex.proxmox.stopvm
+      when: '"RUNNING" in vmstatusresult.stdout'
+    - name: alex.proxmox.removevm
+      when: '"NOTEXIST" not in vmstatusresult.stdout'
+    - name: alex.proxmox.status
+      vars:
+        prop_vmid: "{{ prop_proxmox_template }}"
+      failed_when: '"NOTEXIST" not in vmstatusresult.stdout'
+    - name: alex.proxmox.addvm
+      vars:
+        args_template: "{{ prop_proxmox_template }}"
+    - name: alex.proxmox.startvm
+    - name: alex.preinstall.waitstarted
+    - name: alex.preinstall.knownhost
+      vars:
+        args_ipaddress: "{{ prop_ipaddress }}"
+    - name: alex.preinstall.resetsshhostcert
+    - name: alex.preinstall.knownhost
+      vars:
+        args_ipaddress: "{{ prop_ipaddress }}"
+    - name: alex.preinstall.hostname
+    - name: alex.preinstall.aptupgrade

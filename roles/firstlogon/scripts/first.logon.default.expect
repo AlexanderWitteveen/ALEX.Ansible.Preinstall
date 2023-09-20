@@ -29,7 +29,31 @@ expect {
                 send -- "$password\r"
 
                 expect "$installusername@"
-                send -- "exit\r"
+                send -- "sudo su\r"
+
+                expect "password"
+                send -- "$password\r"
+
+                expect "root@"
+                send -- "rm /etc/ssh/ssh_host*\r"
+
+                expect "root@"
+                send -- "ls -las /etc/ssh\r"
+
+                expect "root@"
+                send -- "ssh-keygen -A\r"
+
+                expect "root@"
+                send -- "systemctl restart sshd\r"
+
+                #expect "root@"
+                #send -- "ls -las /etc/ssh\r"
+
+                #expect "root@"
+                #send -- "exit\r"
+
+                #expect "$installusername@"
+                #send -- "exit\r"
 
                 expect eof
 

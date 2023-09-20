@@ -1,0 +1,45 @@
+---
+
+- name: "Playbook: Build Template"
+  hosts: "{{ args_host }}"
+  gather_facts: false
+
+  vars_files:
+    - /etc/ansible/inventory/vars.yml
+
+  roles:
+    - name: alex.preinstall.knownhost
+      vars:
+        args_ipaddress: "{{ prop_proxmox_host }}"
+    - name: alex.proxmox.status
+      vars:
+        args_vmid: "{{ prop_proxmox_vmid }}"
+    - name: alex.proxmox.stopvm
+      when: '"RUNNING" in vmstatusresult.stdout'
+    - name: alex.proxmox.removevm
+      when: '"NOTEXIST" not in vmstatusresult.stdout'
+    - name: alex.proxmox.status
+      vars:
+        prop_vmid: "{{ prop_proxmox_parent_vmid }}"
+      failed_when: '"NOTEXIST" not in vmstatusresult.stdout'
+    - name: alex.proxmox.addvm
+      vars:
+        args_template: "{{ prop_proxmox_parent_vmid }}"
+    - name: alex.proxmox.startvm
+    - name: alex.preinstall.waitstarted
+    - name: alex.preinstall.knownhost
+      vars:
+        args_ipaddress: "{{ prop_ipaddress }}"
+    - name: alex.preinstall.firstlogon
+    - name: alex.preinstall.knownhost
+      vars:
+        args_ipaddress: "{{ prop_ipaddress }}"
+    - name: alex.preinstall.adduser
+    - name: alex.preinstall.autologon
+    - name: alex.preinstall.sudouser
+    - name: alex.preinstall.remoteinstallpython3
+    - name: alex.preinstall.certificates
+    - name: alex.preinstall.hostname
+    - name: alex.preinstall.aptupgrade
+    - name: alex.proxmox.shutdownvm
+    - name: alex.proxmox.convert

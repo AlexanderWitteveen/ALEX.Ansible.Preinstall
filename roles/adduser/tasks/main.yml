@@ -1,11 +1,15 @@
 ---
 
 - name: Add User
-  shell: ../scripts/add.user.sh "{{ args_ipaddress }}" "{{ args_install_username }}" "{{ args_admin_username }}" "{{ args_admin_password }}"
+  shell: |
+    {{ role_path }}/scripts/add.user.sh "{{ prop_ipaddress }}" "{{ prop_install_username }}" "{{ prop_admin_username }}" "{{ prop_admin_password }}"
+    if [[ "$?" != "0" ]]; then
+      echo "Error executing script" 
+    fi
   args:
     executable: /bin/bash
   register: expectresult
   changed_when: '"Changed" in expectresult.stdout'
-  failed_when: '"Error" in expectresult.stdout'
+  failed_when: '("Error" in expectresult.stdout) or ("Host key verification failed." in expectresult.stdout)'
   connection: local
   become: false

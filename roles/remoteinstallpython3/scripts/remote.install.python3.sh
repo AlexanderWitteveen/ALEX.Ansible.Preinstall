@@ -2,9 +2,8 @@
 
 ipaddress=$1
 username=$2
-password=$3
 
-expect -f ../scripts/sudo.user.expect "$ipaddress" "$username" "$password"
+expect -f $(dirname "$0")/remote.install.python3.expect "$ipaddress" "$username"
 if [[ "$?" != "0" ]]; then 
     echo "**** Error: Expect failed"
 fi

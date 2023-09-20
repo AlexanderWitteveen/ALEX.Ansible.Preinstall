@@ -1,7 +1,11 @@
 ---
 
 - name: Set sudo for user
-  shell: ../scripts/sudo.user.sh "{{ args_ipaddress }}" "{{ args_admin_username }}" "{{ args_admin_password }}"
+  shell: |
+    {{ role_path }}/scripts/sudo.user.sh "{{ prop_ipaddress }}" "{{ prop_admin_username }}" "{{ prop_admin_password }}"
+    if [[ "$?" != "0" ]]; then
+      echo "Error executing script" 
+    fi
   args:
     executable: /bin/bash
   register: expectresult

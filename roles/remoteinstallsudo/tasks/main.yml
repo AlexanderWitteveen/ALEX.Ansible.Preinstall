@@ -1,7 +1,11 @@
 ---
 
 - name: Remote install sudo
-  shell: ../scripts/remote.install.sudo.sh "{{ args_ipaddress }}" "{{ args_install_username }}" "{{ args_admin_password }}" "{{ args_expect }}"
+  shell: |
+    {{ role_path }}/scripts/remote.install.sudo.sh "{{ prop_ipaddress }}" "{{ prop_install_username }}" "{{ prop_admin_password }}" "{{ prop_expect }}"
+    if [[ "$?" != "0" ]]; then
+      echo "Error executing script" 
+    fi
   args:
     executable: /bin/bash
   register: expectresult

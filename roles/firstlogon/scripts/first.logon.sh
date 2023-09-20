@@ -6,7 +6,7 @@ expect=$3
 installusername=$4
 installpassword=$5
 
-expect -f ../scripts/first.logon.$expect.expect "$ipaddress" "$password" "$installusername" "$installpassword"
+expect -f $(dirname "$0")/first.logon.$expect.expect "$ipaddress" "$password" "$installusername" "$installpassword"
 if [[ "$?" != "0" ]]; then 
     echo "**** Error: Expect failed"
 fi

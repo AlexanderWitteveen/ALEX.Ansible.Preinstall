@@ -9,7 +9,7 @@ expect=$6
 
 pub=$(cat $pubpath)
 
-expect -f ../scripts/auto.logon.$expect.expect "$ipaddress" "$username" "$password" "$pub" "$keypath"
+expect -f $(dirname "$0")/auto.logon.$expect.expect "$ipaddress" "$username" "$password" "$pub" "$keypath"
 if [[ "$?" != "0" ]]; then 
     echo "**** Error: Expect failed"
 fi

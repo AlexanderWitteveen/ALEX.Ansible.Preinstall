@@ -5,13 +5,21 @@
 
 #- name: Print message
 #  debug:
-#    msg: "Change hostname from {{ ansible_facts.hostname }} to {{ args_hostname }}."
+#    msg: "Change hostname from {{ ansible_facts.hostname }} to {{ prop_hostname }}."
 
 - name: Set a hostname
   ansible.builtin.hostname:
-    name: "{{ args_hostname }}"
+    name: "{{ prop_hostname }}"
   register: hostnameresult
+  vars:
+    ansible_connection: ssh
+    ansible_host: "{{ prop_ipaddress }}"
+  become: true
 
 - name: Conditionally reboot the machine with all defaults
   reboot:
   when: hostnameresult.changed
+  vars:
+    ansible_connection: ssh
+    ansible_host: "{{ prop_ipaddress }}"
+  become: true
