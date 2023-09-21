@@ -6,7 +6,7 @@
     state: absent
   vars:
     ansible_connection: ssh
-    ansible_host: "{{ prop_ipaddress }}"
+    ansible_host: "{{ args_reset_ipaddress }}"
   become: true
 
 - name: create host keys
@@ -21,15 +21,16 @@
     ls -las /etc/ssh
   args:
     executable: /bin/bash
+  register: result
   failed_when: '"Error" in result.stdout'
   vars:
     ansible_connection: ssh
-    ansible_host: "{{ prop_ipaddress }}"
+    ansible_host: "{{ args_reset_ipaddress }}"
   become: true
 
 - name: Reboot the machine with all defaults
   reboot:
   vars:
     ansible_connection: ssh
-    ansible_host: "{{ prop_ipaddress }}"
+    ansible_host: "{{ args_reset_ipaddress }}"
   become: true

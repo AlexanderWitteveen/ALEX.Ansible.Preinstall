@@ -2,7 +2,7 @@
 
 - name: Update Known Hosts
   shell: |
-    {{ role_path }}/scripts/known.hosts.sh "{{ args_ipaddress }}" "{{ prop_local_user_ssh }}"
+    {{ role_path }}/scripts/known.hosts.sh "{{ args_knownhost_ipaddress }}" "{{ args_knownhost_local_user_ssh }}"
     if [[ "$?" != "0" ]]; then
       echo "Error executing script" 
     fi

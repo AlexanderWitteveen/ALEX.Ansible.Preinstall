@@ -2,7 +2,7 @@
 
 - name: Remote install sudo
   shell: |
-    {{ role_path }}/scripts/remote.install.sudo.sh "{{ prop_ipaddress }}" "{{ prop_install_username }}" "{{ prop_admin_password }}" "{{ prop_expect }}"
+    {{ role_path }}/scripts/remote.install.sudo.sh "{{ args_sudo_ipaddress }}" "{{ args_sudo_install_username }}" "{{ args_sudo_admin_password }}" "{{ args_sudu_expect }}"
     if [[ "$?" != "0" ]]; then
       echo "Error executing script" 
     fi
