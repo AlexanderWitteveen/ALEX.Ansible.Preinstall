@@ -15,6 +15,10 @@
   ansible.builtin.apt_repository:
     repo: deb http://deb.debian.org/debian/ bookworm-updates non-free-firmware main contrib non-free
     state: present
+  vars:
+    ansible_connection: ssh
+    ansible_host: "{{ args_apt_ipaddress }}"
+  become: true
 
 - name: Update cache
   apt:
