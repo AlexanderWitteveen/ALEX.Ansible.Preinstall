@@ -8,40 +8,26 @@
     - /etc/ansible/inventory/vars.yml
 
   tasks:
-    - ansible.builtin.include_role:
-        name: alex.preinstall.knownhost
-      vars:
-        args_knownhost_ipaddress: "{{ prop_proxmox_host }}"
-        args_knownhost_local_user_ssh: "{{ prop_local_user_ssh }}"
+
 
     - ansible.builtin.include_role:
-        name: alex.proxmox.rebuild
+        name: alex.preinstall.newtemplateinitialize
       vars:
-        args_rebuild_vmid: "{{ prop_proxmox_vmid }}"
-        args_rebuild_host: "{{ prop_proxmox_host }}"
-        args_rebuild_templateid: "{{ prop_proxmox_template }}"
-        args_rebuild_name: "{{ prop_proxmox_name }}"
-        args_rebuild_hostname: "{{ prop_hostname }}"
-        args_rebuild_description: "{{ prop_description }}"
-        args_rebuild_ipaddress: "{{ prop_ipaddress }}"
-        args_rebuild_mac: "{{ prop_vm_mac }}"
-        args_rebuild_vlan: "{{ prop_vm_vlan }}"
-        args_rebuild_mac2: "{{ prop_vm_mac2 | default('0') }}"
-        args_rebuild_vlan2: "{{ prop_vm_vlan2 | default('0')}}"
-        args_rebuild_memory: "{{ prop_vm_memory }}"
-        args_rebuild_cores: "{{ prop_vm_cores }}"
-        args_rebuild_start_boot: "{{ prop_vm_start_boot }}"
-
-    - ansible.builtin.include_role:
-        name: alex.preinstall.waitstarted
-      vars:
-        args_rebuild_ipaddress: "{{ prop_ipaddress }}"
-
-    - ansible.builtin.include_role:
-        name: alex.preinstall.knownhost
-      vars:
-        args_knownhost_ipaddress: "{{ prop_ipaddress }}"
-        args_knownhost_local_user_ssh: "{{ prop_local_user_ssh }}"
+        args_newtemplateinitialize_host: "{{ prop_proxmox_host }}"
+        args_newtemplateinitialize_local_user_ssh: "{{ prop_local_user_ssh }}"
+        args_newtemplateinitialize_vmid: "{{ prop_proxmox_vmid }}"
+        args_newtemplateinitialize_templateid: "{{ prop_proxmox_template }}"
+        args_newtemplateinitialize_name: "{{ prop_proxmox_name }}"
+        args_newtemplateinitialize_hostname: "{{ prop_hostname }}"
+        args_newtemplateinitialize_description: "{{ prop_description }}"
+        args_newtemplateinitialize_ipaddress: "{{ prop_ipaddress }}"
+        args_newtemplateinitialize_mac: "{{ prop_vm_mac }}"
+        args_newtemplateinitialize_vlan: "{{ prop_vm_vlan }}"
+        args_newtemplateinitialize_mac2: "{{ prop_vm_mac2 | default('0') }}"
+        args_newtemplateinitialize_vlan2: "{{ prop_vm_vlan2 | default('0')}}"
+        args_newtemplateinitialize_memory: "{{ prop_vm_memory }}"
+        args_newtemplateinitialize_cores: "{{ prop_vm_cores }}"
+        args_newtemplateinitialize_start_boot: "{{ prop_vm_start_boot }}"
 
     - ansible.builtin.include_role:
         name: alex.preinstall.firstlogon
@@ -105,24 +91,9 @@
         args_cert_certificates_org_settings: "{{ prop_certificates_org_settings }}"
 
     - ansible.builtin.include_role:
-        name: alex.preinstall.hostname
+        name: alex.preinstall.newtemplatefinalize
       vars:
-        args_hostname_hostname: "{{ prop_hostname }}"
-        args_hostname_ipaddress: "{{ prop_ipaddress }}"
-
-    - ansible.builtin.include_role:
-        name: alex.preinstall.aptupgrade
-      vars:
-        args_apt_ipaddress: "{{ prop_ipaddress }}"
-
-    - ansible.builtin.include_role:
-        name: alex.proxmox.shutdown
-      vars:
-        args_shutdown_vmid: "{{ prop_proxmox_vmid }}"
-        args_shutdown_host: "{{ prop_proxmox_host }}"
-
-    - ansible.builtin.include_role:
-        name: alex.proxmox.convert
-      vars:
-        args_convert_vmid: "{{ prop_proxmox_vmid }}"
-        args_convert_host: "{{ prop_proxmox_host }}"
+        args_newtemplatefinalize_hostname: "{{ prop_hostname }}"
+        args_newtemplatefinalize_ipaddress: "{{ prop_ipaddress }}"
+        args_newtemplatefinalize_vmid: "{{ prop_proxmox_vmid }}"
+        args_newtemplatefinalize_host: "{{ prop_proxmox_host }}"

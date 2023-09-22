@@ -1,0 +1,24 @@
+---
+
+- ansible.builtin.include_role:
+    name: alex.preinstall.hostname
+  vars:
+    args_hostname_hostname: "{{ args_newtemplatefinalize_hostname }}"
+    args_hostname_ipaddress: "{{ args_newtemplatefinalize_ipaddress }}"
+
+- ansible.builtin.include_role:
+    name: alex.preinstall.aptupgrade
+  vars:
+    args_apt_ipaddress: "{{ args_newtemplatefinalize_ipaddress }}"
+
+- ansible.builtin.include_role:
+    name: alex.proxmox.shutdown
+  vars:
+    args_shutdown_vmid: "{{ args_newtemplatefinalize_vmid }}"
+    args_shutdown_host: "{{ args_newtemplatefinalize_host }}"
+
+- ansible.builtin.include_role:
+    name: alex.proxmox.convert
+  vars:
+    args_convert_vmid: "{{ args_newtemplatefinalize_vmid }}"
+    args_convert_host: "{{ args_newtemplatefinalize_host }}"
