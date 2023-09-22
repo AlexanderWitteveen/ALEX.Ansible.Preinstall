@@ -34,14 +34,3 @@
   vars:
     args_knownhost_ipaddress: "{{ args_newtemplateinitialize_ipaddress }}"
     args_knownhost_local_user_ssh: "{{ args_newtemplateinitialize_local_user_ssh }}"
-
-- ansible.builtin.include_role:
-    name: alex.preinstall.resetsshhostcert
-  vars:
-    args_reset_ipaddress: "{{ args_newtemplateinitialize_ipaddress }}"
-
-- ansible.builtin.include_role:
-    name: alex.preinstall.knownhost
-  vars:
-    args_knownhost_ipaddress: "{{ args_newtemplateinitialize_ipaddress }}"
-    args_knownhost_local_user_ssh: "{{ args_newtemplateinitialize_local_user_ssh }}"

@@ -1,6 +1,6 @@
 ---
 
-- name: "Playbook: Build Template"
+- name: "Playbook: configurelaptop"
   hosts: "{{ args_host }}"
   gather_facts: false
 
@@ -8,25 +8,6 @@
     - /etc/ansible/inventory/vars.yml
 
   tasks:
-    - ansible.builtin.include_role:
-        name: alex.preinstall.newtemplateinitializebase
-      vars:
-        args_newtemplateinitialize_host: "{{ prop_proxmox_host }}"
-        args_newtemplateinitialize_local_user_ssh: "{{ prop_local_user_ssh }}"
-        args_newtemplateinitialize_vmid: "{{ prop_proxmox_vmid }}"
-        args_newtemplateinitialize_templateid: "{{ prop_proxmox_template }}"
-        args_newtemplateinitialize_name: "{{ prop_proxmox_name }}"
-        args_newtemplateinitialize_hostname: "{{ prop_hostname }}"
-        args_newtemplateinitialize_description: "{{ prop_description }}"
-        args_newtemplateinitialize_ipaddress: "{{ prop_ipaddress }}"
-        args_newtemplateinitialize_mac: "{{ prop_vm_mac }}"
-        args_newtemplateinitialize_vlan: "{{ prop_vm_vlan }}"
-        args_newtemplateinitialize_mac2: "{{ prop_vm_mac2 | default('0') }}"
-        args_newtemplateinitialize_vlan2: "{{ prop_vm_vlan2 | default('0')}}"
-        args_newtemplateinitialize_memory: "{{ prop_vm_memory }}"
-        args_newtemplateinitialize_cores: "{{ prop_vm_cores }}"
-        args_newtemplateinitialize_start_boot: "{{ prop_vm_start_boot }}"
-
     - ansible.builtin.include_role:
         name: alex.preinstall.firstlogon
       vars:
@@ -107,9 +88,12 @@
         args_mountsmb_basename: "{{ prop_basename }}"
 
     - ansible.builtin.include_role:
-        name: alex.preinstall.newtemplatefinalize
+        name: alex.preinstall.hostname
       vars:
-        args_newtemplatefinalize_hostname: "{{ prop_hostname }}"
-        args_newtemplatefinalize_ipaddress: "{{ prop_ipaddress }}"
-        args_newtemplatefinalize_vmid: "{{ prop_proxmox_vmid }}"
-        args_newtemplatefinalize_host: "{{ prop_proxmox_host }}"
+        args_hostname_hostname: "{{ prop_hostname }}"
+        args_hostname_ipaddress: "{{ prop_ipaddress }}"
+
+    - ansible.builtin.include_role:
+        name: alex.preinstall.aptupgrade
+      vars:
+        args_apt_ipaddress: "{{ prop_ipaddress }}"

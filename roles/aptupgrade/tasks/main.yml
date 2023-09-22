@@ -11,14 +11,10 @@
     ansible_host: "{{ args_apt_ipaddress }}"
   become: true
 
-#- name: Copy apt sources list for Ubuntu 20.04
-#  ansible.builtin.template:
-#    src: "sources.list.ubuntu.2004.j2"
-#    dest: "/etc/apt/sources.list"
-#    owner: root
-#    group: root
-#    mode: 0755
-#  when: ansible_facts.distribution == "Ubuntu" and ansible_facts.distribution_version == "20.04"
+- name: Add specified repository into sources list
+  ansible.builtin.apt_repository:
+    repo: deb http://deb.debian.org/debian/ bookworm-updates non-free-firmware main contrib non-free
+    state: present
 
 - name: Update cache
   apt:
