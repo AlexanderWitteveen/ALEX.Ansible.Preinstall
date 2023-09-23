@@ -62,6 +62,13 @@
         args_hostname_ipaddress: "{{ prop_ipaddress }}"
 
     - ansible.builtin.include_role:
+        name: alex.preinstall.configuser
+      vars:
+        args_user_ipaddress: "{{ prop_ipaddress }}"
+        args_user_username: "{{ prop_admin_username }}"
+        args_user_group: "{{ prop_admin_groupname }}"
+
+    - ansible.builtin.include_role:
         name: alex.preinstall.aptupgrade
       vars:
         args_apt_ipaddress: "{{ prop_ipaddress }}"

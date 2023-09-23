@@ -88,10 +88,22 @@
         args_mountsmb_basename: "{{ prop_basename }}"
 
     - ansible.builtin.include_role:
+        name: alex.ms.server
+      vars:
+        args_server_ipaddress: "{{ prop_ipaddress }}"
+
+    - ansible.builtin.include_role:
         name: alex.preinstall.hostname
       vars:
         args_hostname_hostname: "{{ prop_hostname }}"
         args_hostname_ipaddress: "{{ prop_ipaddress }}"
+
+    - ansible.builtin.include_role:
+        name: alex.preinstall.configuser
+      vars:
+        args_user_ipaddress: "{{ prop_ipaddress }}"
+        args_user_username: "{{ prop_admin_username }}"
+        args_user_group: "{{ prop_admin_groupname }}"
 
     - ansible.builtin.include_role:
         name: alex.preinstall.aptupgrade

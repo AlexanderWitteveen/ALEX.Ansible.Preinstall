@@ -89,6 +89,11 @@
         args_cert_certificates_org_settings: "{{ prop_certificates_org_settings }}"
 
     - ansible.builtin.include_role:
+        name: alex.ms.server
+      vars:
+        args_server_ipaddress: "{{ prop_ipaddress }}"
+
+    - ansible.builtin.include_role:
         name: alex.linux.installsmbclient
       vars:
         args_smbclient_ipaddress: "{{ prop_ipaddress }}"
@@ -105,6 +110,13 @@
         args_mountsmb_mounts: "{{ prop_smb_mounts }}"
         args_mountsmb_username: "{{ prop_admin_username }}"
         args_mountsmb_basename: "{{ prop_basename }}"
+
+    - ansible.builtin.include_role:
+        name: alex.preinstall.configuser
+      vars:
+        args_user_ipaddress: "{{ prop_ipaddress }}"
+        args_user_username: "{{ prop_admin_username }}"
+        args_user_group: "{{ prop_admin_groupname }}"
 
     - ansible.builtin.include_role:
         name: alex.preinstall.newtemplatefinalize
