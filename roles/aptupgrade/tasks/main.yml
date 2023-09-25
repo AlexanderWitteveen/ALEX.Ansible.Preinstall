@@ -11,15 +11,6 @@
     ansible_host: "{{ prop_ipaddress }}"
   become: true
 
-#- name: Add specified repository into sources list
-#  ansible.builtin.apt_repository:
-#    repo: deb http://deb.debian.org/debian/ bookworm-updates non-free-firmware main contrib non-free
-#    state: present
-#  vars:
-#    ansible_connection: ssh
-#    ansible_host: "{{ prop_ipaddress }}"
-#  become: true
-
 - name: Update apt sources
   ansible.builtin.template:
     src: sources.list.debian12.j2

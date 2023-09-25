@@ -1,0 +1,13 @@
+---
+
+- name: Install basecommands
+  apt:
+    name: "{{ packages }}"
+    state: present
+    update_cache: yes
+  vars:
+    packages:
+    - pgp 
+    ansible_connection: ssh
+    ansible_host: "{{ prop_ipaddress }}"
+  become: true

@@ -21,6 +21,9 @@
 - ansible.builtin.include_role: # certificates
     name: alex.preinstall.certificates
 
+- ansible.builtin.include_role: # basecommands
+    name: alex.preinstall.basecommands
+
 - ansible.builtin.include_role: # installsmbclient
     name: alex.linux.installsmbclient
 
