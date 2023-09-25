@@ -10,10 +10,10 @@
     name: alex.preinstall.waitstarted
 
 - ansible.builtin.include_role: # knownhost
-    name: alex.preinstall.knownhost
+    name: alex.preinstall.knownoshost
 
 - ansible.builtin.include_role: # resetsshhostcert
     name: alex.preinstall.resetsshhostcert
 
 - ansible.builtin.include_role: # knownhost
-    name: alex.preinstall.knownhost
+    name: alex.preinstall.knownoshost
