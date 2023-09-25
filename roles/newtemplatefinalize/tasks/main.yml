@@ -9,5 +9,8 @@
 - ansible.builtin.include_role: # shutdown
     name: alex.proxmox.shutdown
 
+- ansible.builtin.include_role: # statusvm
+    name: alex.proxmox.statusvm
+
 - ansible.builtin.include_role: # convert
     name: alex.proxmox.convert
