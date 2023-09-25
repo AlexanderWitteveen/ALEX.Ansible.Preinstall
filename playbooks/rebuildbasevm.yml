@@ -1,6 +1,6 @@
 ---
 
-- name: "Playbook: Rebuild VM"
+- name: "Playbook: Rebuild base VM"
   hosts: "{{ args_host }}"
   gather_facts: false
 
@@ -9,4 +9,4 @@
 
   tasks:
     - ansible.builtin.include_role:
-        name: alex.preinstall.rebuildvm
+        name: alex.preinstall.rebuildbasevm

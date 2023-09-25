@@ -1,0 +1,15 @@
+---
+
+- name: Update Known Hosts
+  shell: |
+    {{ role_path }}/scripts/known.hosts.sh "{{ prop_ipaddress }}" "{{ prop_local_user_ssh }}"
+    if [[ "$?" != "0" ]]; then
+      echo "Error executing script" 
+    fi
+  args:
+    executable: /bin/bash
+  register: result
+  changed_when: '"Changed" in result.stdout'
+  failed_when: '"Error" in result.stdout'
+  connection: local
+  become: false

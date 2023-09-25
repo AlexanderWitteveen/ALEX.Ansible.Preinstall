@@ -2,7 +2,7 @@
 
 - name: Add User
   shell: |
-    {{ role_path }}/scripts/add.user.sh "{{ args_adduser_ipaddress }}" "{{ args_adduser_install_username }}" "{{ args_adduser_admin_username }}" "{{ args_adduser_admin_password }}"
+    {{ role_path }}/scripts/add.user.sh "{{ prop_ipaddress }}" "{{ prop_install_username }}" "{{ prop_admin_username }}" "{{ prop_admin_password }}"
     if [[ "$?" != "0" ]]; then
       echo "Error executing script" 
     fi

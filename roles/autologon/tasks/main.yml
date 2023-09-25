@@ -2,7 +2,7 @@
 
 - name: Ensure autologon
   shell: |
-    {{ role_path }}/scripts/auto.logon.sh "{{ args_autologon_ipaddress }}" "{{ args_autologon_admin_username }}" "{{ args_autologon_admin_password }}" "{{ args_autologon_ssh_key }}" "{{ args_autologon_ssh_pub }}" "{{ args_autologon_expect }}"
+    {{ role_path }}/scripts/auto.logon.sh "{{ prop_ipaddress }}" "{{ prop_admin_username }}" "{{ prop_admin_password }}" "{{ prop_local_user_ssh_key }}" "{{ prop_local_user_ssh_pub }}" "{{ prop_autologon_expect }}"
     if [[ "$?" != "0" ]]; then
       echo "Error executing script" 
     fi

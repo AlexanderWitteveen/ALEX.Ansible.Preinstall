@@ -2,7 +2,7 @@
 
 - name: Remote install python3
   shell: |
-    {{ role_path }}/scripts/remote.install.python3.sh "{{ args_python3_ipaddress }}" "{{ args_python3_admin_username }}"
+    {{ role_path }}/scripts/remote.install.python3.sh "{{ prop_ipaddress }}" "{{ prop_admin_username }}"
     if [[ "$?" != "0" ]]; then
       echo "Error executing script" 
     fi

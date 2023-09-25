@@ -1,0 +1,11 @@
+---
+
+- ansible.builtin.include_role: # newtemplateinitializebase
+    name: alex.preinstall.newtemplateinitializebase
+
+- ansible.builtin.include_role: # configurebaseos
+    name: alex.preinstall.configurebaseos
+
+- ansible.builtin.include_role: # newtemplatefinalize
+    name: alex.preinstall.newtemplatefinalize
+

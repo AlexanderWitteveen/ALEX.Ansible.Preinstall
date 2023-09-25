@@ -1,0 +1,15 @@
+---
+
+- name: Mount SMB volume
+  ansible.posix.mount:
+    src: "{{ item.source }}"
+    path: "{{ item.path }}"
+    opts: 'rw,vers=3,file_mode=0777,dir_mode=0777,dom=WORKGROUP,credentials=/home/{{ args_mountsmb_username }}/.{{ args_mountsmb_basename }}/.smbcred'
+    fstype: cifs
+    state: mounted
+  loop: "{{ args_mountsmb_mounts }}"
+  vars:
+    ansible_connection: ssh
+    ansible_host: "{{ args_mountsmb_ipaddress }}"
+  become: true
+

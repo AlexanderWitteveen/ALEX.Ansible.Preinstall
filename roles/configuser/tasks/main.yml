@@ -2,12 +2,12 @@
 
 - name: Add user config folder
   ansible.builtin.file:
-    path: /home/{{ args_user_username }}/.config
-    owner: "{{ args_user_username }}"
-    group: "{{ args_user_group }}"
+    path: /home/{{ prop_admin_username }}/.config
+    owner: "{{ prop_admin_username }}"
+    group: "{{ prop_admin_groupname }}"
     mode: '0700'
     state: directory
   vars:
     ansible_connection: ssh
-    ansible_host: "{{ args_user_ipaddress }}"
+    ansible_host: "{{ prop_ipaddress }}"
   become: true

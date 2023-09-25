@@ -5,11 +5,11 @@
 
 - name: Set a hostname
   ansible.builtin.hostname:
-    name: "{{ args_hostname_hostname }}"
+    name: "{{ prop_hostname }}"
   register: hostnameresult
   vars:
     ansible_connection: ssh
-    ansible_host: "{{ args_hostname_ipaddress }}"
+    ansible_host: "{{ prop_ipaddress }}"
   become: true
 
 - name: Conditionally reboot the machine with all defaults
@@ -17,5 +17,5 @@
   when: hostnameresult.changed
   vars:
     ansible_connection: ssh
-    ansible_host: "{{ args_hostname_ipaddress }}"
+    ansible_host: "{{ prop_ipaddress }}"
   become: true

@@ -1,36 +1,13 @@
 ---
 
 - ansible.builtin.include_role:
-    name: alex.preinstall.knownhost
-  vars:
-    args_knownhost_ipaddress: "{{ args_newtemplateinitialize_host }}"
-    args_knownhost_local_user_ssh: "{{ args_newtemplateinitialize_local_user_ssh }}"
+    name: alex.preinstall.knownproxmoxhost
 
 - ansible.builtin.include_role:
     name: alex.proxmox.rebuild
-  vars:
-    args_rebuild_vmid: "{{ args_newtemplateinitialize_vmid }}"
-    args_rebuild_host: "{{ args_newtemplateinitialize_host }}"
-    args_rebuild_templateid: "{{ args_newtemplateinitialize_templateid }}"
-    args_rebuild_name: "{{ args_newtemplateinitialize_name }}"
-    args_rebuild_hostname: "{{ args_newtemplateinitialize_hostname }}"
-    args_rebuild_description: "{{ args_newtemplateinitialize_description }}"
-    args_rebuild_ipaddress: "{{ args_newtemplateinitialize_ipaddress }}"
-    args_rebuild_mac: "{{ args_newtemplateinitialize_mac }}"
-    args_rebuild_vlan: "{{ args_newtemplateinitialize_vlan }}"
-    args_rebuild_mac2: "{{ args_newtemplateinitialize_mac2 | default('0') }}"
-    args_rebuild_vlan2: "{{ args_newtemplateinitialize_vlan2 | default('0')}}"
-    args_rebuild_memory: "{{ args_newtemplateinitialize_memory }}"
-    args_rebuild_cores: "{{ args_newtemplateinitialize_cores }}"
-    args_rebuild_start_boot: "{{ args_newtemplateinitialize_start_boot }}"
 
 - ansible.builtin.include_role:
     name: alex.preinstall.waitstarted
-  vars:
-    args_rebuild_ipaddress: "{{ args_newtemplateinitialize_ipaddress }}"
 
 - ansible.builtin.include_role:
-    name: alex.preinstall.knownhost
-  vars:
-    args_knownhost_ipaddress: "{{ args_newtemplateinitialize_ipaddress }}"
-    args_knownhost_local_user_ssh: "{{ args_newtemplateinitialize_local_user_ssh }}"
+    name: alex.preinstall.knownoshost

@@ -8,7 +8,7 @@
     - pve-enterprise.list
   vars:
     ansible_connection: ssh
-    ansible_host: "{{ args_apt_ipaddress }}"
+    ansible_host: "{{ prop_ipaddress }}"
   become: true
 
 #- name: Add specified repository into sources list
@@ -17,7 +17,7 @@
 #    state: present
 #  vars:
 #    ansible_connection: ssh
-#    ansible_host: "{{ args_apt_ipaddress }}"
+#    ansible_host: "{{ prop_ipaddress }}"
 #  become: true
 
 - name: Update apt sources
@@ -29,7 +29,7 @@
     mode: '0644'
   vars:
     ansible_connection: ssh
-    ansible_host: "{{ args_apt_ipaddress }}"
+    ansible_host: "{{ prop_ipaddress }}"
   become: true
 
 - name: Update cache
@@ -39,7 +39,7 @@
   failed_when: false
   vars:
     ansible_connection: ssh
-    ansible_host: "{{ args_apt_ipaddress }}"
+    ansible_host: "{{ prop_ipaddress }}"
   become: true
 
 - name: Remove unused packages from the cache
@@ -47,7 +47,7 @@
     autoclean: yes
   vars:
     ansible_connection: ssh
-    ansible_host: "{{ args_apt_ipaddress }}"
+    ansible_host: "{{ prop_ipaddress }}"
   become: true
 
 - name: Remove dependencies that are no longer required
@@ -55,7 +55,7 @@
     autoremove: yes
   vars:
     ansible_connection: ssh
-    ansible_host: "{{ args_apt_ipaddress }}"
+    ansible_host: "{{ prop_ipaddress }}"
   become: true
 
 - name: Upgrade all packages to the latest version
@@ -63,6 +63,6 @@
     upgrade: full
   vars:
     ansible_connection: ssh
-    ansible_host: "{{ args_apt_ipaddress }}"
+    ansible_host: "{{ prop_ipaddress }}"
   become: true
 

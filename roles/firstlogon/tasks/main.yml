@@ -2,7 +2,7 @@
 
 - name: First logon
   shell: |
-    {{ role_path }}/scripts/first.logon.sh "{{ args_first_ipaddress }}" "{{ args_first_admin_password }}" "{{ args_first_expect }}" "{{ args_first_install_username }}" "{{ args_first_install_password }}"
+    {{ role_path }}/scripts/first.logon.sh "{{ prop_ipaddress }}" "{{ prop_admin_password }}" "{{ prop_firstlogon_expect }}" "{{ prop_install_username }}" "{{ prop_install_password }}"
     if [[ "$?" != "0" ]]; then
       echo "Error executing script" 
     fi

@@ -1,13 +1,14 @@
 ---
 
+- ansible.builtin.include_role: # configurebaseos
+    name: alex.preinstall.configurebaseos
+
 - ansible.builtin.include_role: # hostname
     name: alex.preinstall.hostname
 
 - ansible.builtin.include_role: # aptupgrade
     name: alex.preinstall.aptupgrade
 
-- ansible.builtin.include_role: # shutdown
-    name: alex.proxmox.shutdown
 
-- ansible.builtin.include_role: # convert
-    name: alex.proxmox.convert
+
+

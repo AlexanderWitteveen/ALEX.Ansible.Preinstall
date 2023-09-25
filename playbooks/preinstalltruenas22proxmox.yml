@@ -6,7 +6,7 @@
   become: true
   vars:
     ansible_host: "{{ args_ipaddress }}"
-
+----------------- OUT of DATE --------------------------------------
   vars_files:
     - /etc/ansible/inventory/vars.yml
 
