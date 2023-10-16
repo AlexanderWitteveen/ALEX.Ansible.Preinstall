@@ -11,3 +11,15 @@
     ansible_connection: ssh
     ansible_host: "{{ prop_ipaddress }}"
   become: true
+
+- name: Ensure home data folder exists
+  file:
+    path: "/home/{{ prop_admin_username }}/.{{ prop_basename }}" 
+    state: directory
+    owner: "{{ prop_admin_username }}"
+    group: "{{ prop_admin_groupname }}"
+    mode: 0755
+  vars:
+    ansible_connection: ssh
+    ansible_host: "{{ prop_ipaddress }}"
+  become: true

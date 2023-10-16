@@ -66,10 +66,21 @@
     ansible_host: "{{ prop_ipaddress }}"
   become: true
 
-- name: Install a list of packages
+- name: Install a list of packages x64
   apt:
-    deb: https://dl.step.sm/gh-release/cli/docs-ca-install/v0.23.1/step-cli_0.23.1_amd64.deb
+    deb: "{{ prop_sources_stepcli_x64 }}"
     state: present
+  when: '"{{ prop_arch }}" == "x64"'
+  vars:
+    ansible_connection: ssh
+    ansible_host: "{{ prop_ipaddress }}"
+  become: true
+
+- name: Install a list of packages a64
+  apt:
+    deb: "{{ prop_sources_stepcli_a64 }}"
+    state: present
+  when: '"{{ prop_arch }}" == "a64"'
   vars:
     ansible_connection: ssh
     ansible_host: "{{ prop_ipaddress }}"
@@ -164,18 +175,6 @@
         ansible_connection: ssh
         ansible_host: "{{ prop_ipaddress }}"
       become: true
-
-- name: Ensure home data folder exists
-  file:
-    path: "/home/{{ prop_admin_username }}/.{{ prop_basename }}" 
-    state: directory
-    owner: "{{ prop_admin_username }}"
-    group: "{{ prop_admin_groupname }}"
-    mode: 0755
-  vars:
-    ansible_connection: ssh
-    ansible_host: "{{ prop_ipaddress }}"
-  become: true
 
 ###### TODO rethink if OK 
 - name: Copy ssh certificates 2 

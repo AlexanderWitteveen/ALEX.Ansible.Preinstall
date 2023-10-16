@@ -2,12 +2,13 @@
 
 - name: Install basecommands
   apt:
-    name: "{{ packages }}"
+    name:
+      - pgp
+      - pip
+      - pipx
     state: present
     update_cache: yes
   vars:
-    packages:
-    - pgp 
     ansible_connection: ssh
     ansible_host: "{{ prop_ipaddress }}"
   become: true

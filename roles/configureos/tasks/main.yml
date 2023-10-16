@@ -1,14 +1,43 @@
 ---
 
-- ansible.builtin.include_role: # configurebaseos
-    name: alex.preinstall.configurebaseos
+- ansible.builtin.include_role: # firstlogon
+    name: alex.preinstall.firstlogon
+
+- ansible.builtin.include_role: # knownoshost
+    name: alex.base.knownoshost
+
+- ansible.builtin.include_role: # adduser
+    name: alex.preinstall.adduser
+
+- ansible.builtin.include_role: # autologon
+    name: alex.preinstall.autologon
+
+- ansible.builtin.include_role: # sudouser
+    name: alex.preinstall.sudouser
+
+- ansible.builtin.include_role: # remoteinstallpython3
+    name: alex.preinstall.remoteinstallpython3
+
+- ansible.builtin.include_role: # configuser
+    name: alex.preinstall.configuser
+
+- ansible.builtin.include_role: # installsmbclient
+    name: alex.linux.installsmbclient
+
+- ansible.builtin.include_role: # mountsmbshare
+    name: alex.linux.mountsmbshare
+
+- ansible.builtin.include_role: # certificates
+    name: alex.preinstall.certificates
+
+- ansible.builtin.include_role: # basecommands
+    name: alex.preinstall.basecommands
+
+- ansible.builtin.include_role: # ms.server
+    name: alex.ms.server
 
 - ansible.builtin.include_role: # hostname
     name: alex.preinstall.hostname
 
 - ansible.builtin.include_role: # aptupgrade
     name: alex.preinstall.aptupgrade
-
-
-
-

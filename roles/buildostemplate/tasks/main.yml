@@ -1,10 +1,10 @@
 ---
 
-- ansible.builtin.include_role: # newtemplateinitializebase
-    name: alex.preinstall.newtemplateinitializebase
+- ansible.builtin.include_role:
+    name: alex.proxmox.rebuild
 
 - ansible.builtin.include_role: # configurebaseos
-    name: alex.preinstall.configurebaseos
+    name: alex.preinstall.configureos
 
 - ansible.builtin.include_role: # newtemplatefinalize
     name: alex.preinstall.newtemplatefinalize
