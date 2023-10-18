@@ -11,13 +11,27 @@
     ansible_host: "{{ prop_ipaddress }}"
   become: true
 
-- name: Update apt sources
+- name: Update apt sources Debian 11
+  ansible.builtin.template:
+    src: sources.list.debian11.j2
+    dest: "/etc/apt/sources.list"
+    owner: "root"
+    group: "root"
+    mode: '0644'
+  when: 'prop_os == "deb11"'
+  vars:
+    ansible_connection: ssh
+    ansible_host: "{{ prop_ipaddress }}"
+  become: true
+
+- name: Update apt sources Debian 12
   ansible.builtin.template:
     src: sources.list.debian12.j2
     dest: "/etc/apt/sources.list"
     owner: "root"
     group: "root"
     mode: '0644'
+  when: 'prop_os == "deb12"'
   vars:
     ansible_connection: ssh
     ansible_host: "{{ prop_ipaddress }}"

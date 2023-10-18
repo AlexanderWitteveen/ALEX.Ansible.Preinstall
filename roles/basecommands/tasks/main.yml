@@ -1,13 +1,26 @@
 ---
 
-- name: Install basecommands
+- name: Install basecommands all
   apt:
     name:
       - pgp
       - pip
+      - wget
+      - curl
+    state: present
+    update_cache: yes
+  vars:
+    ansible_connection: ssh
+    ansible_host: "{{ prop_ipaddress }}"
+  become: true
+
+- name: Install basecommands deb12
+  apt:
+    name:
       - pipx
     state: present
     update_cache: yes
+  when: 'prop_os == "deb12"'
   vars:
     ansible_connection: ssh
     ansible_host: "{{ prop_ipaddress }}"

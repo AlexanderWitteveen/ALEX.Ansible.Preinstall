@@ -18,6 +18,9 @@
 - ansible.builtin.include_role: # remoteinstallpython3
     name: alex.preinstall.remoteinstallpython3
 
+- ansible.builtin.include_role: # aptupgrade
+    name: alex.preinstall.aptupgrade
+
 - ansible.builtin.include_role: # configuser
     name: alex.preinstall.configuser
 
@@ -39,5 +42,3 @@
 - ansible.builtin.include_role: # hostname
     name: alex.preinstall.hostname
 
-- ansible.builtin.include_role: # aptupgrade
-    name: alex.preinstall.aptupgrade
