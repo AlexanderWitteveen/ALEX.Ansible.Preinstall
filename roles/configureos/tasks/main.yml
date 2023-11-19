@@ -1,5 +1,8 @@
 ---
 
+- ansible.builtin.include_role: # knownoshost
+    name: alex.base.knownoshost
+
 - ansible.builtin.include_role: # firstlogon
     name: alex.preinstall.firstlogon
 
